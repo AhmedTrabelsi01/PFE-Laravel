@@ -98,7 +98,7 @@ class studentController extends Controller
 
         $Postulation = Postulation::find($id);
 
-        $owner_id = $Postulation->user_id;
+       /* $owner_id = $Postulation->user_id;
 
         $header = $request->header('Authorization');
         $tokenData = self::verifToken($header);
@@ -107,10 +107,8 @@ class studentController extends Controller
                 'message' => 'access denied'
             ], 401);
         }
+*/
 
-
-        DB::table('postulations')->where('id', $Postulation->id)->update(['name' => $request->name]);
-        DB::table('postulations')->where('id', $Postulation->id)->update(['family_name' => $request->family_name]);
         DB::table('postulations')->where('id', $Postulation->id)->update(['email' => $request->email]);
         DB::table('postulations')->where('id', $Postulation->id)->update(['number' => $request->number]);
 
@@ -148,7 +146,7 @@ class studentController extends Controller
 
     public function getOwnedPostulation(Request $request, $id)
     {
-
+/*
 
         $header = $request->header('Authorization');
         $tokenData = self::verifToken($header);
@@ -157,7 +155,7 @@ class studentController extends Controller
                 'message' => 'access denied'
             ], 401);
         }
-
+*/
 
         $postulations = DB::table('postulations')->where('user_id', $id)->get();
         return response()->json($postulations, 200);
@@ -170,6 +168,23 @@ class studentController extends Controller
             ->get();
         return response()->json($postulation, 200);
     }
+
+    public function getPostulationById(Request $request, $id)
+    {
+/*
+        $header = $request->header('Authorization');
+        $tokenData = self::verifToken($header);
+        if ($tokenData->role_id < 5) {
+            return response()->json([
+                'message' => 'access denied'
+            ], 401);
+        }
+*/
+
+        $Postulation = Postulation::find($id);
+        return response()->json($Postulation, 200);
+    }
+
 
 
 

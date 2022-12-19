@@ -92,6 +92,8 @@ Route::post('/addpostulation',[studentController::class,'addPostulation']);
 Route::post('/updateapp/{id}',[studentController::class,'updatePostulation']);
 Route::delete('/delapp/{id}',[studentController::class,'deletepostulation']);
 Route::get('/getownedapp/{id}',[studentController::class, 'getOwnedPostulation']);
+Route::get('/posbyid/{id}',[studentController::class, 'getPostulationById']);
+
 Route::post('/addcom', [studentController::class, 'addComment']);
 Route::post('checkcomm', [studentController::class, 'getOwnedPostulationByProject']); // pending accounts
 
